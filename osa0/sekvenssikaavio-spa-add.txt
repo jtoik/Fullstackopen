@@ -1,0 +1,20 @@
+Title Muistiinpanon lisääminen /spa -sivulla
+
+note over Selain:
+Selaimessa tapahtumankäsittelijä estää sivun 
+uudelleenlatauksen, lisää paikallisesti
+data.json -tiedostoon uuden muistiinpanon,
+sekä piirtää uudelleen nettisivun sisällön
+end note 
+
+note over Selain:
+Selaimen suorittama JavaScript-koodi lähettää
+datan Palvelimelle
+end note
+
+Selain->Palvelin: HTTP POST https://fullstack-exampleapp.herokuapp.com/new_note_spa
+
+note over Palvelin:
+Palvelin ottaa vastaan JSON-muodossa olevan 
+datan ja päivittää data.json -tiedoston
+end note 

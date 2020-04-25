@@ -1,0 +1,22 @@
+Title /spa -sivun lataaminen
+
+Selain->Palvelin: HTTP Get https://fullstack-exampleapp.herokuapp.com/spa
+Palvelin-->Selain: HTML
+Selain->Palvelin: HTTP GET https://fullstack-exampleapp.herokuapp.com/main.css
+Palvelin-->Selain: CSS
+Selain->Palvelin: HTTP GET https://fullstack-exampleapp.herokuapp.com/spa.js
+Palvelin-->Selain: JavaScript -koodi
+
+Note over Selain:
+Selain suorittaa Javascript-koodin, joka 
+pyytää JSON-datan Palvelimelta
+end note
+
+Selain->Palvelin: HTTP GET https://fullstack-exampleapp.herokuapp.com/data.json
+Palvelin-->Selain: JSON -muotoinen data
+
+note over Selain:
+Selaimessa JavaSript-koodi ottaa vastaan 
+JSON-datan ja renderöi sivulle viestit 
+ilman päivämääräleimaa
+end note
