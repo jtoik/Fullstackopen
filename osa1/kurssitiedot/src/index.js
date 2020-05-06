@@ -26,10 +26,11 @@ const App = () => {
     exercises: 14
   }
 
-  const sum = (p1, p2) => {
+  const sum = (p1, p2, p3) => {
     console.log(p1)
     console.log(p2)
-    return p1 + p2
+    console.log(p3)
+    return p1 + p2 + p3
   }
   
   const Total = sum(part1.exercises, part2.exercises, part3.exercises)
