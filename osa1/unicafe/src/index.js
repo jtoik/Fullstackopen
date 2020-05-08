@@ -10,7 +10,27 @@ const Button = (props) => (
 )
 
 const Total = (props) => {
-  <div>Total reviews: {props.good + props.neutral + props.bad}</div>
+  return (
+    <div>
+      Total reviews: {props.good + props.neutral + props.bad}
+    </div>
+  )
+}
+
+const Average = (props) => {
+  return (
+    <div>
+      Average rating: {((props.good * 1) + (props.bad * -1)) / (props.good + props.neutral + props.bad)}
+    </div>
+  )
+}
+
+const Percentage = (props) => {
+  return (
+    <div>
+      Positive ratings: {100 * (props.good / (props.good + props.neutral + props.bad))}%
+    </div>
+  )
 }
 
 const App = () => {
@@ -29,7 +49,9 @@ const App = () => {
       <Display name='Neutral:' value={neutral} />
       <Display name='Bad:' value={bad} />
       <br />
-      <Total name='Total reviews:' good={good} neutral={neutral} bad={bad} />
+      <Total good={good} neutral={neutral} bad={bad} />
+      <Average good={good} neutral={neutral} bad={bad} />
+      <Percentage good={good} neutral={neutral} bad={bad} />
     </div>
   )
 }
