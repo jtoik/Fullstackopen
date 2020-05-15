@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import ReactDOM from 'react-dom'
 
-const Display = props => <div>{props.good} {props.good}</div>
+const Display = props => <div>{props.name} {props.value}</div>
 
 const Button = (props) => (
   <button onClick={props.handleClick}>
@@ -9,43 +9,34 @@ const Button = (props) => (
   </button>
 )
 
-const Total = (props) => {
-  return (
-    <div>
-      Total reviews: {props.good + props.neutral + props.bad}
-    </div>
-  )
-}
-
-const Average = (props) => {
-  return (
-    <div>
-      Average rating: {((props.good * 1) + (props.bad * -1)) / (props.good + props.neutral + props.bad)}
-    </div>
-  )
-}
-
-const Percentage = (props) => {
-  return (
-    <div>
-      Positive ratings: {100 * (props.good / (props.good + props.neutral + props.bad))}%
-    </div>
-  )
-}
-
 const Stats = (props) => {
-  return(
+  const total=(props.good + props.neutral + props.bad)
+  const averagescore=( (props.good * 1) + (props.bad * -1) ) / ( props.good + props.neutral + props.bad )
+  const percentage=100 * (props.good / (props.good + props.neutral + props.bad))
+
+  if ( total === 0 ) {
+    return (
+      <div>
+        <h1>Stats</h1>
+        <p>No feedback given</p>
+      </div>
+    )
+  }
+  
+  
+  return (
     <div>
       <h1>Stats</h1>
       <Display name='Good:' value={props.good} />
       <Display name='Neutral:' value={props.neutral} />
       <Display name='Bad:' value={props.bad} />
       <br />
-      <Total good={props.good} neutral={props.neutral} bad={props.bad} />
-      <Average good={props.good} neutral={props.neutral} bad={props.bad} />
-      <Percentage good={props.good} neutral={props.neutral} bad={props.bad} />
+      <div>Total reviews: {total} </div>
+      <div>Average rating: {averagescore} </div>
+      <div>Positive ratings: {percentage}% </div>
     </div>
   )
+  
 }
 
 const App = () => {
