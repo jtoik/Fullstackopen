@@ -33,7 +33,7 @@ const Percentage = (props) => {
   )
 }
 
-const Statistics = (props) => {
+const Stats = (props) => {
   return(
     <div>
       <h1>Stats</h1>
