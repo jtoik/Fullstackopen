@@ -11,8 +11,8 @@ const Button = (props) => (
 
 const Stats = (props) => {
   const total=(props.good + props.neutral + props.bad)
-  const averagescore=( (props.good * 1) + (props.bad * -1) ) / ( props.good + props.neutral + props.bad )
-  const percentage=100 * (props.good / (props.good + props.neutral + props.bad))
+  const averagescore=( (props.good * 1) + (props.bad * -1) ) / total
+  const percentage=100 * (props.good / total)
 
   if ( total === 0 ) {
     return (
