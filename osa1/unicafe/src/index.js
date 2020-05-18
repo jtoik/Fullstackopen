@@ -1,7 +1,11 @@
 import React, { useState } from 'react'
 import ReactDOM from 'react-dom'
 
-const Display = props => <div>{props.name} {props.value}</div>
+const Display = props => 
+<tr>
+  <td>{props.name}</td>
+  <td>{props.value}</td>
+</tr>
 
 const Button = (props) => (
   <button onClick={props.handleClick}>
@@ -11,9 +15,10 @@ const Button = (props) => (
 
 const StatisticLine = (props) => {
   return (
-    <div>
-      {props.name} {props.value} {props.unit}
-    </div>
+    <tr>
+      <td>{props.name}</td> 
+      <td>{props.value} {props.unit}</td>
+    </tr>
   )
 }
 
@@ -35,13 +40,16 @@ const Stats = (props) => {
   return (
     <div>
       <h1>Stats</h1>
-      <Display name='Good:' value={props.good} />
-      <Display name='Neutral:' value={props.neutral} />
-      <Display name='Bad:' value={props.bad} />
-      <br />
-      <StatisticLine name='Total reviews:' value={total} unit='' />
-      <StatisticLine name='Average rating:' value={averagescore} unit='' />
-      <StatisticLine name='Positive ratings:' value={percentage} unit='%' />
+      <table>
+      <tbody>
+        <Display name='Good:' value={props.good} />
+        <Display name='Neutral:' value={props.neutral} />
+        <Display name='Bad:' value={props.bad} />
+        <StatisticLine name='Total reviews:' value={total} unit='' />
+        <StatisticLine name='Average rating:' value={averagescore} unit='' />
+        <StatisticLine name='Positive ratings:' value={percentage} unit='%' />
+      </tbody>
+      </table>    
     </div>
   )
   
