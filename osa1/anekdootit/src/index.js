@@ -18,7 +18,7 @@ const App = (props) => {
     <div>
       {props.anecdotes[selected]}
       <br />
-      <Button handleClick={() => setSelected(getRandomInt(5))} text='Next anecdote' />
+      <Button handleClick={() => setSelected(getRandomInt(6))} text='Next anecdote' />
     </div>
   )
 }
