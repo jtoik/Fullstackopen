@@ -9,6 +9,14 @@ const Button = (props) => (
   </button>
 )
 
+const StatisticLine = (props) => {
+  return (
+    <div>
+      {props.name} {props.value} {props.unit}
+    </div>
+  )
+}
+
 const Stats = (props) => {
   const total=(props.good + props.neutral + props.bad)
   const averagescore=( (props.good * 1) + (props.bad * -1) ) / total
@@ -31,9 +39,9 @@ const Stats = (props) => {
       <Display name='Neutral:' value={props.neutral} />
       <Display name='Bad:' value={props.bad} />
       <br />
-      <div>Total reviews: {total} </div>
-      <div>Average rating: {averagescore} </div>
-      <div>Positive ratings: {percentage}% </div>
+      <StatisticLine name='Total reviews:' value={total} unit='' />
+      <StatisticLine name='Average rating:' value={averagescore} unit='' />
+      <StatisticLine name='Positive ratings:' value={percentage} unit='%' />
     </div>
   )
   
