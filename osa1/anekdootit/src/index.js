@@ -9,15 +9,21 @@ const Button = (props) => (
 
 const App = (props) => {
   const [selected, setSelected] = useState(0)
+  var points = new Uint8Array(6)
 
   function getRandomInt(max) {
     return Math.floor(Math.random() * Math.floor(max));
   }
 
+  function vote() {
+    points[selected] = points[selected] + 1 
+  }
+
   return (
     <div>
-      {props.anecdotes[selected]}
-      <br />
+      <p>{props.anecdotes[selected]}</p>
+      <p>This anecdote has {points[selected]} votes!</p>
+      <Button handleclick={() => vote()} text='Vote for this anecdote' />
       <Button handleClick={() => setSelected(getRandomInt(6))} text='Next anecdote' />
     </div>
   )
