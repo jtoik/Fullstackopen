@@ -9,6 +9,7 @@ const Button = (props) => (
 
 const App = (props) => {
   const [selected, setSelected] = useState(0)
+  const [mostVotes, setMostVotes] = useState(0)
   const [points, setPoints] = useState([0, 0, 0, 0, 0, 0])
 
   function getRandomInt(max) {
@@ -21,12 +22,27 @@ const App = (props) => {
     return pointsTemp;
   }
 
+  function maxIndex() {
+    var index = points.findIndex(x => x === Math.max(...points));
+    return index;
+  }
+
+  function voteButton() {
+    setPoints(vote);
+    setMostVotes(maxIndex);
+  }
+  
   return (
     <div>
-      <p>{props.anecdotes[selected]}</p>
+      <h1>Anecdote of the day</h1>
+      <p>"{props.anecdotes[selected]}"</p>
       <p>This anecdote has {points[selected]} votes!</p>
-      <Button handleClick={() => setPoints(vote) } text='Vote for this anecdote' />
+      <Button handleClick={() => voteButton() } text='Vote for this anecdote' />
       <Button handleClick={() => setSelected(getRandomInt(6) )} text='Next anecdote' />
+      <h1>Anecdote with most votes</h1>
+      <p>"{props.anecdotes[mostVotes]}"</p>
+      <p>The winning anecdote has {points[mostVotes]} votes!</p>
+      <Button handleClick={() => maxIndex() } text='Test' />
     </div>
   )
 }
