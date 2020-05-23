@@ -39,6 +39,7 @@ const Total = (props) => {
 
 const Course = (props) => {
   const course=props.course
+  
   return (
     <>
         <Header course={course.name} />  
@@ -48,31 +49,77 @@ const Course = (props) => {
   )
 }
 
-const App = () => {
-  const course = {
-    name: 'Half Stack application development',
-    parts: [
-      {
-        id: 1,
-        name: 'Fundamentals of React',
-        exercises: 10
-      },
-      {
-        id: 2,
-        name: 'Using props to pass data',
-        exercises: 7
-      },
-      {
-        id: 3,
-        name: 'State of a component',
-        exercises: 14
-      }
-    ]
+const Courses = (props) => {
+  const courses = props.courses
+
+  let courseList = []
+  for (let i=0; i < courses.length; i++) {
+    courseList.push(i)
   }
+
+  console.log('Test2', courseList)
+
+  console.log('Courseid=1:', courses[0])
+  console.log('Courseid=2:', courses[1])
+
 
   return (
     <div>
-      <Course course={course} />
+      <Course course={courses[0]} />
+      <Course course={courses[1]} />
+    </div>
+  )
+}
+
+const App = () => {
+  const courses = [
+    {
+      name: 'Half Stack application development',
+      id: 1,
+      parts: [
+        {
+          name: 'Fundamentals of React',
+          exercises: 10,
+          id: 1
+        },
+        {
+          name: 'Using props to pass data',
+          exercises: 7,
+          id: 2
+        },
+        {
+          name: 'State of a component',
+          exercises: 14,
+          id: 3
+        },
+        {
+          name: 'Redux',
+          exercises: 11,
+          id: 4
+        }
+      ]
+    }, 
+    {
+      name: 'Node.js',
+      id: 2,
+      parts: [
+        {
+          name: 'Routing',
+          exercises: 3,
+          id: 1
+        },
+        {
+          name: 'Middlewares',
+          exercises: 7,
+          id: 2
+        }
+      ]
+    }
+  ]
+
+  return (
+    <div>
+      <Courses courses={courses} />
     </div>
   )
 }
