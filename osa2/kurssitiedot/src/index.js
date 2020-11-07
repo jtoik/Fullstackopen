@@ -4,9 +4,9 @@ import ReactDOM from 'react-dom'
 const Header = (props) => {
   return (
     <div>
-      <h1>
+      <h2>
         {props.course}
-      </h1>
+      </h2>
     </div>
   )
 }
@@ -14,7 +14,9 @@ const Header = (props) => {
 const Content = (props) => {
   const parts = props.parts.map(parts => 
   <p key={parts.id} >{parts.name} {parts.exercises}</p> )
-  
+    console.log('props in this are', props)
+    console.log('parts is', parts)
+
   return (
     <div>
       {parts}
@@ -31,7 +33,7 @@ const Total = (props) => {
   return (
     <div>  
       <p>
-        Number of exercises {total}
+        <b>Number of exercises {total}</b>
       </p>
     </div>
   )
@@ -39,7 +41,9 @@ const Total = (props) => {
 
 const Course = (props) => {
   const course=props.course
-  
+
+  console.log('course is', course)
+
   return (
     <>
         <Header course={course.name} />  
@@ -52,21 +56,12 @@ const Course = (props) => {
 const Courses = (props) => {
   const courses = props.courses
 
-  let courseList = []
-  for (let i=0; i < courses.length; i++) {
-    courseList.push(i)
-  }
-
-  console.log('Test2', courseList)
-
-  console.log('Courseid=1:', courses[0])
-  console.log('Courseid=2:', courses[1])
-
+  console.log('props value is', props)
 
   return (
     <div>
-      <Course course={courses[0]} />
-      <Course course={courses[1]} />
+      {courses.map(courses => 
+        <Course key={courses.id} course={courses} />)}
     </div>
   )
 }
@@ -115,10 +110,12 @@ const App = () => {
         }
       ]
     }
+    
   ]
 
   return (
     <div>
+      <h1>Web development curriculum</h1>
       <Courses courses={courses} />
     </div>
   )
