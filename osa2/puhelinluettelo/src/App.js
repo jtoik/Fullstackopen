@@ -23,6 +23,7 @@ const App = () => {
     }
 
     function skipEntry() {
+      window.alert(`${newName} is already added to phonebook`)
       setNewName('')
       console.log('entry has been skipped');
     }
