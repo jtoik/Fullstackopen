@@ -15,12 +15,29 @@ const App = () => {
 
   const addName = (event) => {
     event.preventDefault()
+
+    var checkPersons = persons.map(persons => persons.name)
+
     const newEntry = {
       name: newName
     }
 
-    setPersons(persons.concat(newEntry))
-    setNewName('')
+    function skipEntry() {
+      setNewName('')
+      console.log('entry has been skipped');
+    }
+
+    function addEntry() {
+      setPersons(persons.concat(newEntry))
+      setNewName('')
+      console.log('entry has been added');
+    }
+
+    function conditionalAdd() {
+      return (checkPersons.includes(newName) ? skipEntry() : addEntry() )
+    }
+
+    conditionalAdd()
   }
 
   const handleNoteChange = (event) => {
