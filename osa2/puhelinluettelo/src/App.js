@@ -96,6 +96,13 @@ const App = () => {
       setNewName('')
       setNewNumber('')
       console.log('entry has been added');
+      
+      axios
+        .post('http://localhost:3001/persons', newEntry)
+        .then(response => {
+          console.log(response)
+        })
+        console.log('entry has been logged')
     }
 
     function conditionalAdd() {
