@@ -1,6 +1,7 @@
 
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
+import personHandler from './services/persons'
 
 const Name = ({persons}) => {
   return (
@@ -63,8 +64,8 @@ const App = () => {
 
   useEffect(() => {   
     console.log('start effect hook')
-    axios
-      .get('http://localhost:3001/persons')
+    personHandler
+      .loadPersons()
       .then(response => {
         console.log('promise fulfilled')
         setPersons(response.data)
@@ -97,8 +98,8 @@ const App = () => {
       setNewNumber('')
       console.log('entry has been added');
       
-      axios
-        .post('http://localhost:3001/persons', newEntry)
+      personHandler  
+        .addPerson(newEntry)
         .then(response => {
           console.log(response)
         })
