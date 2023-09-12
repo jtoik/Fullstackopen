@@ -1,11 +1,16 @@
 
 import React, { useState, useEffect } from 'react'
-import axios from 'axios'
 import personHandler from './services/persons'
 
-const Name = ({persons}) => {
+const Name = ({persons, removeName}) => {
   return (
-    <li>{persons.name} {persons.number}</li>
+    <li>
+      {persons.name}
+      {' '}
+      {persons.number}
+      {' '} 
+      <button onClick={removeName}>Remove entry</button>
+    </li>
   )
 }
 
@@ -16,6 +21,16 @@ const Filter = (props) => {
         value={props.filter}
         onChange={props.handleFilterChange}
       />
+    </div>
+  )
+}
+
+const Button = (props) => {
+  return (
+    <div>
+      <button onClick={props.removeName}>
+        Remove Entry
+      </button>
     </div>
   )
 }
@@ -49,7 +64,11 @@ const List = (props) => {
     <div>
       <ul>
         {props.filteredPersons.map(persons =>
-          <Name key={persons.name} persons={persons} />
+          <Name 
+            key={persons.name} 
+            persons={persons}
+
+          />
         )}
       </ul>
     </div>
@@ -103,7 +122,7 @@ const App = () => {
         .then(response => {
           console.log(response)
         })
-        console.log('entry has been logged')
+        console.log('entry addition has been logged')
     }
 
     function conditionalAdd() {
@@ -112,6 +131,28 @@ const App = () => {
 
     conditionalAdd()
   }
+
+  const removeName = (personId) => {
+
+    function removeEntry() {
+      
+      personHandler
+        .removePerson(personId)
+        .then(response => {
+          console.log(response)
+          console.log(response.data)
+          personHandler
+          .loadPersons()
+          .then(response => {
+            console.log('promise fulfilled')
+            setPersons(response.data)
+          })
+        })
+        console.log('entry deletion complete')
+      }
+
+    removeEntry()
+  } 
 
   const handleNameChange = (event) => {
     setNewName(event.target.value)
@@ -139,8 +180,14 @@ const App = () => {
         newNumber={newNumber}
         handleNumberChange={handleNumberChange}
       />
+      <Button
+        removeName={removeName}  
+      />
       <h2>Numbers</h2>
-      <List filteredPersons={filteredPersons} />
+      <List 
+        filteredPersons={filteredPersons}
+        removeName={() => removeName(persons.id)}  
+      />
     </div>
   )
 

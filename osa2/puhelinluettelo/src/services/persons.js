@@ -9,7 +9,14 @@ const addPerson = newPerson => {
   return axios.post(listAddress, newPerson)
 }
 
-export default { 
-  loadPersons: loadPersons,
-  addPerson: addPerson
+const removePerson = personID => {
+  return axios.delete(listAddress + '/' + personID)
 }
+
+const personFunctions = { 
+  loadPersons,
+  addPerson,
+  removePerson
+}
+
+export default personFunctions
